@@ -1,14 +1,10 @@
     import React from 'react';
-    import { View, Text, FlatList, StyleSheet, Button, TextInput, TouchableOpacity } from 'react-native';
+    import { View, Text, FlatList, StyleSheet, Button, TextInput, TouchableOpacity, Switch } from 'react-native';
     import { FontAwesome5 } from '@expo/vector-icons';
-    import SwitchSelector from 'react-native-switch-selector';
 
     function TelaBuscaReceita(){
 
-    const options = [
-        { label: '', value: 'Não Selecionado ' },
-        { label: '', value: 'Selecionado ' },
-    ];
+    const [isSwitchEnable, setSwitch] = React.useState(false)
 
     const dados = [
     {
@@ -21,43 +17,59 @@
         },
         {
         id: '3',
-        nome_alimento: 'Peixe'
+        nome_alimento: 'Ovo'
         },
         {
         id: '4',
-        nome_alimento: 'Azeitona'
+        nome_alimento: 'Linguiça'
         },
         {
         id: '5',
-        nome_alimento: 'Cebola'
+        nome_alimento: 'Peixe'
         },
         {
         id: '6',
         nome_alimento: 'Pimentão'
         },
         {
-        id: '6',
-        nome_alimento: 'Ovo'
+        id: '7',
+        nome_alimento: 'Cebola'
+        },
+         {
+        id: '8',
+        nome_alimento: 'Banana'
+        },
+        {
+        id: '9',
+        nome_alimento: 'Abacate'
+        },
+        {
+        id: '10',
+        nome_alimento: 'Carne Moída'
         },
     ];
 
-    function renderItem({item: dados}){ //só pros alimentos
+    function renderItem({item: dados}){
     return (
     <View style={styles.divListaPrincipal}>
         <View style={styles.divLista}>
             <Text style={styles.itensLista}>{dados.nome_alimento}
-                <View style={styles.divSelecionado}>
-                    <SwitchSelector style={styles.Selecionado} options={options} dados={dados} 
-                    initial={0} onPress={value => console.log(value + '\"' + dados.nome_alimento + '\"' )}
+                
+                <View style={styles.divSwitch}>
+                    <Switch style={styles.Switch}
+                        value = {isSwitchEnable}
+                        onValueChange = {(value) => setSwitch(value) }
                     />
                 </View>
+               
             </Text>
         </View>
     </View>
     )
-    } //fim dela
+    } 
 
     const handlePress = () => false
+    
     return (
         <View style={styles.divPrincipal}> 
 
@@ -81,7 +93,7 @@
                 <TextInput style={styles.input} placeholder = "Digite aqui..."/>
 
                 <View style={styles.divBotao}>
-                    <Button onPress = {handlePress} title = "Adicionar"/>
+                    <Button title = "Adicionar"/>
                 </View>
 
                 <FlatList 
@@ -94,30 +106,20 @@
     }
 
     const styles = StyleSheet.create({
-        divSelecionado: {
-            flex: 1
+        Switch: {
+            marginHorizontal: '82%',
+            marginVertical: '2%'
         },
-        Selecionado: {
-            marginHorizontal: '62%',
-            width: '20%',
-            margin: 1,
-            flexDirection: "row",
-            flex: 1,
-        },
-        divListaPrincipal:{
-            flex: 1,
-        },
-        divLista: {
-            backgroundColor: '#FFF',
+        divListaPrincipal: {
             width: '100%',
-            height: 50,
+            paddingVertical: 1,
+            backgroundColor: '#fff'
         },
         itensLista: {
             backgroundColor: '#CFD8DC',
-            height: '85%',
-            width: '100%',
             color: '#7B8D93',
             fontFamily: 'Inria-Bold',
+            fontSize: 18,
         },
         divPrincipal: {
             backgroundColor: '#455357',
@@ -160,7 +162,7 @@
             color: '#000',
             fontSize: 25,
             marginHorizontal: 20,
-            marginVertical: 15,
+            marginVertical: 18,
             height: 30,
             fontFamily: 'Roboto',
         },

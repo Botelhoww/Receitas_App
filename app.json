@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "Receitas_App",
-    "slug": "Receitas_App",
+    "slug": "app_receitas",
     "platforms": [
       "ios",
       "android",
@@ -23,6 +23,7 @@
     ],
     "ios": {
       "supportsTablet": true
-    }
+    },
+    "description": "Aplicativo para ter ideias de receitas dependendo dos itens que tem disponível em casa..."
   }
 }

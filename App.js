@@ -1,10 +1,10 @@
-          import React, {useState} from 'react';
-          import { SafeAreaView } from 'react-native';
+          import React, {useState, Component} from 'react';
+          import { SafeAreaView, Switch } from 'react-native';
           import * as Font from 'expo-font';
           import {AppLoading} from 'expo';
 
           import TelaBuscaReceita from './src/telas/TelaBuscaReceita'
-
+          
           const getFonts = () => {
           return Font.loadAsync({
               'Roboto': require('./assets/fonts/RobotoCondensed-Regular.ttf'),
@@ -15,7 +15,8 @@
 
           export default function App() {
 
-          const [fontsloaded, setFontsLoaded] = useState(false);
+            const [fontsloaded, setFontsLoaded] = useState(false);
+
               if(fontsloaded){
                   return (
                     <SafeAreaView>
@@ -26,9 +27,10 @@
                 return (
                     <AppLoading
                       startAsync={getFonts}
-                      onFinish={() => setFontsLoaded(true)}
+                      onFinish={() => setFontsLoaded(true)}a
                     />
                 );
               }
           }
 
+          console.disableYellowBox = true;
